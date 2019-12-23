@@ -1,0 +1,1280 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{es6}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{ES6 알아두면 좋을 것들
+(40)}\label{es6-uxc54cuxc544uxb450uxba74-uxc88buxc744-uxac83uxb4e4-40}
+
+\begin{itemize}
+\tightlist
+\item
+  ES6 vs ES6+
+\item
+  ECMA2015 vs ES6
+\item
+  http://kangax.github.io/compat-table/es6/
+\end{itemize}
+
+\subsection{목차}\label{uxbaa9uxcc28}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Function-level scope VS Block-level scope
+\item
+  Arrow Functions
+\item
+  Template literals
+\item
+  Parameter (default, rest, spread)
+\item
+  Destructuring assignment
+\item
+  Property shorthand
+\item
+  Promise
+\end{enumerate}
+
+\ldots{} class, module, iteration, symbol, generator ... ************
+
+    \subsection{Function-level scope VS Block-level
+scope}\label{function-level-scope-vs-block-level-scope}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Function-level & Block-level\tabularnewline
+\midrule
+\endhead
+함수내에서 유효한 범위 & 코드 블록내에서 유효한 범위\tabularnewline
+var로 정의 & const, let으로 정의\tabularnewline
+var 생략 가능 & 생략 불가 (생략하면 var)\tabularnewline
+중복 선언도 가능 & 중복 선언 불가 (const는 중복 할당
+불가)\tabularnewline
+변수 호이스팅 & Temporal Dead Zone (선언와 초기화 사이)\tabularnewline
+전역변수로 사용하면 전역 객체의 프로퍼티가 됨(window, global) &
+전역변수도 개념적인 블록에 존재\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{//var \PYZob{}v:\PYZcb{}}
+        \PY{p}{\PYZob{}}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}A:\PYZsq{}}\PY{p}{,} \PY{n+nx}{v}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//호이스팅}
+            \PY{k+kd}{var} \PY{n+nx}{v} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{;}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}B:\PYZsq{}}\PY{p}{,} \PY{n+nx}{v}\PY{p}{)}\PY{p}{;}
+            \PY{k+kd}{var} \PY{n+nx}{v} \PY{o}{=} \PY{l+m+mi}{200}\PY{p}{;}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}C:\PYZsq{}}\PY{p}{,} \PY{n+nx}{v}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//변수 중복 선언}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+A: undefined
+B: 100
+C: 200
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{//let}
+        \PY{p}{\PYZob{}}
+            \PY{k+kd}{let} \PY{n+nx}{val} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;}
+            \PY{p}{\PYZob{}}
+                \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}A:\PYZsq{}}\PY{p}{,} \PY{n+nx}{val}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//Temporal Dead Zone}
+                \PY{c+c1}{//let val = 20; //중복 아님.}
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+A: 10
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{//let의 정상적 사용}
+        \PY{p}{\PYZob{}}
+            \PY{k+kd}{let} \PY{n+nx}{val} \PY{o}{=} \PY{l+m+mi}{10}
+            \PY{p}{\PYZob{}}
+                \PY{k+kd}{let} \PY{n+nx}{val} \PY{o}{=} \PY{l+m+mi}{20}\PY{p}{;} \PY{c+c1}{//중복 아님.}
+                \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}A:\PYZsq{}}\PY{p}{,} \PY{n+nx}{val}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}B:\PYZsq{}}\PY{p}{,} \PY{n+nx}{val}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+A: 20
+B: 10
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{//var를 for문에서 사용했을 때}
+        \PY{p}{\PYZob{}}
+            \PY{k+kd}{var} \PY{n+nx}{funcs} \PY{o}{=} \PY{p}{[}\PY{p}{]}\PY{p}{;}
+            \PY{k}{for}\PY{p}{(}\PY{k+kd}{var} \PY{n+nx}{i} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}\PY{n+nx}{i} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{;} \PY{n+nx}{i}\PY{o}{++}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n+nx}{funcs}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{k+kd}{function}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+                    \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{i}\PY{o}{*}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+                \PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}i\PYZgt{}\PYZsq{}} \PY{o}{+} \PY{n+nx}{i}\PY{p}{)}\PY{p}{;}
+            \PY{k}{for}\PY{p}{(}\PY{k+kd}{var} \PY{n+nx}{x} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;} \PY{n+nx}{x} \PY{o}{\PYZlt{}} \PY{n+nx}{funcs}\PY{p}{.}\PY{n+nx}{length}\PY{p}{;} \PY{n+nx}{x}\PY{o}{++}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n+nx}{funcs}\PY{p}{[}\PY{n+nx}{x}\PY{p}{]}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+i>5
+50
+50
+50
+50
+50
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{//var를 for문에서 사용했을 때 \PYZhy{}\PYZgt{} 클로져로 해결}
+        \PY{p}{\PYZob{}}
+            \PY{k+kd}{var} \PY{n+nx}{funcs} \PY{o}{=} \PY{p}{[}\PY{p}{]}\PY{p}{;}
+            \PY{k}{for}\PY{p}{(}\PY{k+kd}{var} \PY{n+nx}{i} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}\PY{n+nx}{i} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{;} \PY{n+nx}{i}\PY{o}{++}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n+nx}{funcs}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{p}{(}\PY{k+kd}{function}\PY{p}{(}\PY{n+nx}{index}\PY{p}{)} \PY{p}{\PYZob{}}
+                    \PY{k}{return} \PY{k+kd}{function}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+                        \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{index} \PY{o}{*} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+                    \PY{p}{\PYZcb{}}\PY{p}{;}
+                \PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{(}\PY{n+nx}{i}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            
+            \PY{k}{for}\PY{p}{(}\PY{k+kd}{var} \PY{n+nx}{x} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;} \PY{n+nx}{x} \PY{o}{\PYZlt{}} \PY{n+nx}{funcs}\PY{p}{.}\PY{n+nx}{length}\PY{p}{;} \PY{n+nx}{x}\PY{o}{++}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n+nx}{funcs}\PY{p}{[}\PY{n+nx}{x}\PY{p}{]}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0
+10
+20
+30
+40
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{//let을 for문에서 사용했을 대}
+         \PY{p}{\PYZob{}}
+             \PY{k+kd}{let} \PY{n+nx}{funcs} \PY{o}{=} \PY{p}{[}\PY{p}{]}\PY{p}{;}
+             \PY{k}{for}\PY{p}{(}\PY{k+kd}{let} \PY{n+nx}{xx} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}\PY{n+nx}{xx} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{;} \PY{n+nx}{xx}\PY{o}{++}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{funcs}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{p}{(}\PY{p}{)}\PY{p}{=\PYZgt{}}\PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{xx}\PY{o}{*}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{c+c1}{//console.log(\PYZsq{}xx\PYZgt{}\PYZsq{} + xx);}
+             \PY{k}{for}\PY{p}{(}\PY{n+nx}{f} \PY{k}{of} \PY{n+nx}{funcs}\PY{p}{)} \PY{p}{\PYZob{}} \PY{c+c1}{//of구문}
+                 \PY{n+nx}{f}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{c+c1}{//funcs.forEach(f=\PYZgt{}f());}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0
+10
+20
+30
+40
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{//전역변수로 정의}
+         \PY{k+kd}{var} \PY{n+nx}{g} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{;}
+         \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{global}\PY{p}{.}\PY{n+nx}{g}\PY{p}{)}\PY{p}{;}
+         \PY{k+kd}{let} \PY{n+nx}{lg} \PY{o}{=} \PY{l+m+mi}{200}\PY{p}{;}
+         \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{global}\PY{p}{.}\PY{n+nx}{lg}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+100
+undefined
+
+    \end{Verbatim}
+
+    \subsubsection{정리}\label{uxc815uxb9ac}
+
+\begin{itemize}
+\tightlist
+\item
+  가능한 var는 사용하지 않는다.
+\item
+  const를 먼저 고려한다.
+\item
+  재할당이 꼭 필요한 경우만 let을 사용한다. *******
+\end{itemize}
+
+    \subsection{Arrow Functions}\label{arrow-functions}
+
+\begin{itemize}
+\tightlist
+\item
+  function keyword 대신 =\textgreater{} 이용하여 간략히 함수를 선언
+\item
+  this를 binding하지 않는다. 함수가 실행되는 context를 가리킴 (Lexical
+  this)
+\item
+  위의 이유 때문에 method나 prototype 할당, event listener로 사용하지
+  않는다.
+\item
+  한 줄짜리 , \{\} 생략된 함수는 return도 묵시적으로 된다.
+\item
+  arguments가 없다. (rest parameter 사용)
+\item
+  작성법
+
+  \begin{itemize}
+  \tightlist
+  \item
+    (x,y) =\textgreater{} \{ ... \}
+  \item
+    x =\textgreater{} \{ ... \}
+  \item
+    () =\textgreater{} \{ ... \} // \_ =\textgreater{}
+  \item
+    x =\textgreater{} \{ return x * x; \}
+  \item
+    x =\textgreater{} x * x;
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{// 표현 축약 }
+         \PY{p}{\PYZob{}}
+             \PY{n+nx}{setTimeout}\PY{p}{(}\PY{k+kd}{function}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n+nx}{setTimeout}\PY{p}{(}\PY{p}{(}\PY{p}{)}\PY{p}{=\PYZgt{}}\PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} Timeout \{
+           \_called: false,
+           \_idleTimeout: 1000,
+           \_idlePrev:
+            TimersList \{
+              \_idleNext: [Circular],
+              \_idlePrev:
+               Timeout \{
+                 \_called: false,
+                 \_idleTimeout: 1000,
+                 \_idlePrev: [Circular],
+                 \_idleNext: [Circular],
+                 \_idleStart: 2343017,
+                 \_onTimeout: [Function],
+                 \_timerArgs: undefined,
+                 \_repeat: null,
+                 \_destroyed: false,
+                 [Symbol(unrefed)]: false,
+                 [Symbol(asyncId)]: 129,
+                 [Symbol(triggerId)]: 126 \},
+              \_unrefed: false,
+              msecs: 1000,
+              \_timer: Timer \{ \_list: [Circular] \} \},
+           \_idleNext:
+            Timeout \{
+              \_called: false,
+              \_idleTimeout: 1000,
+              \_idlePrev: [Circular],
+              \_idleNext:
+               TimersList \{
+                 \_idleNext: [Circular],
+                 \_idlePrev: [Circular],
+                 \_unrefed: false,
+                 msecs: 1000,
+                 \_timer: [Timer] \},
+              \_idleStart: 2343017,
+              \_onTimeout: [Function],
+              \_timerArgs: undefined,
+              \_repeat: null,
+              \_destroyed: false,
+              [Symbol(unrefed)]: false,
+              [Symbol(asyncId)]: 129,
+              [Symbol(triggerId)]: 126 \},
+           \_idleStart: 2343017,
+           \_onTimeout: [Function],
+           \_timerArgs: undefined,
+           \_repeat: null,
+           \_destroyed: false,
+           [Symbol(unrefed)]: false,
+           [Symbol(asyncId)]: 131,
+           [Symbol(triggerId)]: 126 \}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+10
+100
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{// 묵시적 return을 이용한 함수 생성}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{add} \PY{o}{=} \PY{p}{(}\PY{n+nx}{a}\PY{p}{,} \PY{n+nx}{b}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{o}{+} \PY{n+nx}{b}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{add}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{n+nx}{cadd} \PY{o}{=} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{b} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{o}{+} \PY{n+nx}{b}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{add10} \PY{o}{=} \PY{n+nx}{cadd}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{add10}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{add10}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+30
+30
+40
+
+    \end{Verbatim}
+
+    \subsection{Template literals}\label{template-literals}
+
+\begin{itemize}
+\tightlist
+\item
+  작은 따옴표(')나 큰 따옴표(") 대신 backtick(`)을 사용하는 것
+\item
+  여러줄 문자열이 허용된다. (공백까지 포함된다.)
+\item
+  \$\{표현식\}의 표현식 삽입이 가능하다.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{//일반 문자열}
+         \PY{p}{\PYZob{}}
+             \PY{k+kd}{var} \PY{n+nx}{js} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}javascript\PYZsq{}}\PY{p}{;}
+             \PY{k+kd}{var} \PY{n+nx}{str} \PY{o}{=}   \PY{l+s+s1}{\PYZsq{}첫번째 줄\PYZbs{}n\PYZsq{}} \PY{o}{+}
+                         \PY{l+s+s1}{\PYZsq{}두번째 줄:\PYZsq{}} \PY{o}{+} \PY{n+nx}{js} \PY{o}{+} \PY{l+s+s1}{\PYZsq{} 예제입니다.\PYZsq{}}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{str}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+첫번째 줄
+두번째 줄:javascript 예제입니다.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{//backtick 문자열}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{js} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}javascript\PYZsq{}}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{str} \PY{o}{=} \PY{l+s+sb}{`}\PY{l+s+sb}{첫번째 줄}
+         \PY{l+s+sb}{두번째 줄:}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{l+m+mi}{5}\PY{o}{+}\PY{l+m+mi}{3}\PY{l+s+si}{\PYZcb{}}\PY{l+s+sb}{ 예제입니다.}\PY{l+s+sb}{`}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{str}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+첫번째 줄
+두번째 줄:8 예제입니다.
+
+    \end{Verbatim}
+
+    \subsubsection{정리}\label{uxc815uxb9ac}
+
+\begin{itemize}
+\tightlist
+\item
+  문자열을 template형태로 사용 가능 (sql, html등) ******
+\end{itemize}
+
+    \subsection{Parameter (default, rest,
+spread)}\label{parameter-default-rest-spread}
+
+\begin{itemize}
+\tightlist
+\item
+  function을 정의하는 편의 기능
+\item
+  const f = function(\textbf{a = 'defaultValue'}) //default parameter
+  value : 파라미터 체크 와 초기화를 간소화
+\item
+  const f = function(\textbf{...a}) //rest parameter : 인수를 함수
+  내부에서 배열로 받을 수 있다.
+\item
+  f(\textbf{...a}); // spread operator : 배열 or Iterable을 개별요소로
+  분리.
+\item
+  rest는 마지막에만 가능 fuction(...b, a);
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{//default}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{parse} \PY{o}{=} \PY{p}{(}\PY{n+nx}{str}\PY{p}{,} \PY{n+nx}{radix}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{n+nb}{parseInt}\PY{p}{(}\PY{n+nx}{str}\PY{p}{,} \PY{n+nx}{radix}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{parse}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}10\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{parse}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}10\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             
+         \PY{c+c1}{//     fucntion parse(str, radix) \PYZob{}}
+         \PY{c+c1}{//         if(!radix) radix = 2;}
+         \PY{c+c1}{//         radix = radix || 2;}
+         \PY{c+c1}{//     \PYZcb{}}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+10
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{// rest, spread}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{sum} \PY{o}{=} \PY{p}{(}\PY{p}{...}\PY{n+nx}{a}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{reduce}\PY{p}{(}\PY{p}{(}\PY{n+nx}{m}\PY{p}{,}\PY{n+nx}{v}\PY{p}{)}\PY{p}{=\PYZgt{}}\PY{n+nx}{m}\PY{o}{+}\PY{n+nx}{v}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{sum}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{n+nx}{arr} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{sum}\PY{p}{(}\PY{p}{...}\PY{n+nx}{arr}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{sum}\PY{p}{(}\PY{p}{...}\PY{n+nx}{arr}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6
+6
+15
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{// max, min}
+         \PY{p}{\PYZob{}}
+             \PY{c+c1}{//1,3,5,7,9 에서 max, min 구하기}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nb}{Math}\PY{p}{.}\PY{n+nx}{max}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n+nb}{Math}\PY{p}{.}\PY{n+nx}{min}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{n+nx}{list} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nb}{Math}\PY{p}{.}\PY{n+nx}{max}\PY{p}{(}\PY{p}{...}\PY{n+nx}{list}\PY{p}{)}\PY{p}{,} \PY{n+nb}{Math}\PY{p}{.}\PY{n+nx}{min}\PY{p}{(}\PY{p}{...}\PY{n+nx}{list}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+9 1
+9 1
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{// default를 이용한 필수값 체크}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{err} \PY{o}{=} \PY{p}{(}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}\PY{k}{throw} \PY{k}{new} \PY{n+nb}{Error}\PY{p}{(}\PY{p}{)}\PY{p}{;}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{testError} \PY{o}{=} \PY{p}{(}\PY{n+nx}{v}\PY{o}{=}\PY{n+nx}{err}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{n+nx}{v}\PY{p}{;}
+         
+             \PY{k}{try} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{testError}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+                 \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{testError}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}\PY{k}{catch}\PY{p}{(}\PY{n+nx}{e}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}error!!!!!!\PYZsq{}}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10
+error!!!!!!
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{// array concat}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}\PY{p}{;}
+             
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}concat:\PYZsq{}}\PY{p}{,} \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{concat}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}spred:\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{p}{...}\PY{n+nx}{a}\PY{p}{,} \PY{p}{...}\PY{n+nx}{b}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}a:\PYZsq{}}\PY{p}{,} \PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}b:\PYZsq{}}\PY{p}{,} \PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+concat: [ 1, 2, 3, 4 ]
+spred: [ 1, 2, 3, 4 ]
+a: [ 1, 2 ]
+b: [ 3, 4 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{// array push (1)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}\PY{p}{;}
+             
+             \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1, 2, [ 3, 4 ] ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{// array push (2)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}\PY{p}{;}
+             
+             \PY{n+nb}{Array}\PY{p}{.}\PY{n+nx}{prototype}\PY{p}{.}\PY{n+nx}{push}\PY{p}{.}\PY{n+nx}{apply}\PY{p}{(}\PY{n+nx}{a}\PY{p}{,} \PY{n+nx}{b}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//a.push(3, 4);}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1, 2, 3, 4 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{// array push (3)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}\PY{p}{;}
+             
+             \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{p}{...}\PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1, 2, 3, 4 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{// array copy (1)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{n+nx}{a}\PY{p}{;}
+             
+             \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1, 2, 3, 4 ]
+[ 1, 2, 3, 4 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{// array copy (2)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{slice}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1, 2, 3, 4 ]
+[ 1, 2, 3 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{// array copy (3)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{b} \PY{o}{=} \PY{p}{[}\PY{p}{...}\PY{n+nx}{a}\PY{p}{]}\PY{p}{;}
+             
+             \PY{n+nx}{a}\PY{p}{.}\PY{n+nx}{push}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1, 2, 3, 4 ]
+[ 1, 2, 3 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{//객체 병합 (1)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj0} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nx}{x}\PY{o}{:}\PY{l+m+mi}{1}\PY{p}{,}  \PY{n+nx}{y}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{obj1} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nx}{y}\PY{o}{:}\PY{l+m+mi}{10}\PY{p}{,} \PY{n+nx}{z}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{\PYZcb{}}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{n+nx}{merged} \PY{o}{=} \PY{n+nb}{Object}\PY{p}{.}\PY{n+nx}{assign}\PY{p}{(}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n+nx}{obj0}\PY{p}{,} \PY{n+nx}{obj1}\PY{p}{)}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{merged}\PY{p}{,} \PY{n+nx}{obj0}\PY{p}{,} \PY{n+nx}{obj1}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{ x: 1, y: 10, z: 20 \} \{ x: 1, y: 2 \} \{ y: 10, z: 20 \}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{//객체 병합 (2)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj0} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nx}{x}\PY{o}{:}\PY{l+m+mi}{1}\PY{p}{,}  \PY{n+nx}{y}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{obj1} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nx}{y}\PY{o}{:}\PY{l+m+mi}{10}\PY{p}{,} \PY{n+nx}{z}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{\PYZcb{}}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{n+nx}{merged} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{...}\PY{n+nx}{obj0}\PY{p}{,} \PY{p}{...}\PY{n+nx}{obj1}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{merged}\PY{p}{,} \PY{n+nx}{obj0}\PY{p}{,} \PY{n+nx}{obj1}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{ x: 1, y: 10, z: 20 \} \{ x: 1, y: 2 \} \{ y: 10, z: 20 \}
+
+    \end{Verbatim}
+
+    \subsubsection{정리}\label{uxc815uxb9ac}
+
+\begin{itemize}
+\tightlist
+\item
+  파라메터의 기본값을 세팅할 수 있어 기본값 확인에 대한 코딩이 줄어든다.
+\item
+  ...문법으로 array, call을 대체할 수 있다. *********
+\end{itemize}
+
+    \subsection{Destructuring assignment}\label{destructuring-assignment}
+
+\begin{itemize}
+\tightlist
+\item
+  객체나 배열을 해체해서 할당하는 기능
+\item
+  ** const {[}변수배열{]} = 배열 **
+\item
+  ** const \{변수배열\} = 객체 **
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{//배열에 대한 해체 할당}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{arr} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{p}{[}\PY{n+nx}{a}\PY{p}{,} \PY{n+nx}{b}\PY{p}{]} \PY{o}{=} \PY{n+nx}{arr}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{a}\PY{p}{,} \PY{n+nx}{b}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{p}{[}\PY{n+nx}{c}\PY{p}{,} \PY{p}{,}\PY{n+nx}{d}\PY{p}{]} \PY{o}{=} \PY{n+nx}{arr}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{c}\PY{p}{,} \PY{n+nx}{d}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{p}{[}\PY{n+nx}{e}\PY{p}{,} \PY{p}{...}\PY{n+nx}{f}\PY{p}{]} \PY{o}{=} \PY{n+nx}{arr}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{e}\PY{p}{,} \PY{n+nx}{f}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1 2
+1 3
+1 [ 2, 3 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{//객체에 대한 해체 할당}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{name} \PY{o}{:} \PY{l+s+s1}{\PYZsq{}길동\PYZsq{}}\PY{p}{,}
+                 \PY{n+nx}{age}\PY{o}{:} \PY{l+m+mi}{60}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{k+kr}{const} \PY{p}{\PYZob{}}\PY{n+nx}{name}\PY{p}{,} \PY{n+nx}{age}\PY{p}{,} \PY{n+nx}{lastName}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{n+nx}{obj}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{name}\PY{p}{,} \PY{n+nx}{age}\PY{p}{,} \PY{n+nx}{lastName}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+길동 60 undefined
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{//function과 함께}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{display} \PY{o}{=} \PY{p}{(}\PY{p}{\PYZob{}}\PY{n+nx}{name}\PY{p}{,} \PY{n+nx}{age}\PY{o}{:}\PY{n+nx}{a}\PY{p}{\PYZcb{}}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}
+                 \PY{k}{return} \PY{l+s+sb}{`}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nx}{name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+sb}{(}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nx}{a}\PY{l+s+si}{\PYZcb{}}\PY{l+s+sb}{세)}\PY{l+s+sb}{`}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{name} \PY{o}{:} \PY{l+s+s1}{\PYZsq{}길동\PYZsq{}}\PY{p}{,}
+                 \PY{n+nx}{age}\PY{o}{:} \PY{l+m+mi}{60}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{display}\PY{p}{(}\PY{n+nx}{obj}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+길동(60세)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{// 중첨 개체의 경우}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{name} \PY{o}{:} \PY{l+s+s1}{\PYZsq{}길동\PYZsq{}}\PY{p}{,}
+                 \PY{n+nx}{address}\PY{o}{:} \PY{p}{\PYZob{}}
+                     \PY{n+nx}{zipCode}\PY{o}{:} \PY{l+s+s1}{\PYZsq{}03068\PYZsq{}}\PY{p}{,}
+                     \PY{n+nx}{city}\PY{o}{:} \PY{l+s+s1}{\PYZsq{}seoul\PYZsq{}}
+                 \PY{p}{\PYZcb{}}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{k+kr}{const} \PY{p}{\PYZob{}}\PY{n+nx}{address}\PY{o}{:}\PY{p}{\PYZob{}}\PY{n+nx}{city}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{n+nx}{obj}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{city}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+seoul
+
+    \end{Verbatim}
+
+    \subsubsection{정리}\label{uxc815uxb9ac}
+
+\begin{itemize}
+\tightlist
+\item
+  vue.js, react등에서 많이 쓰이는 형태
+\item
+  모듈 임포트에서도 많이 사용
+\item
+  변수 생성 코드를 줄일 수 있다. ********
+\end{itemize}
+
+    \subsection{Property shorthand}\label{property-shorthand}
+
+\begin{itemize}
+\tightlist
+\item
+  변수와 propery 이름이 갔다면 생략 가능하다.
+\item
+  메소드 정의시 function을 생략할 수 있다.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{// property 이름 생략}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{x} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nx}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{;}
+             \PY{k+kr}{const} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nx}{x}\PY{o}{:}\PY{n+nx}{x}\PY{p}{,} \PY{n+nx}{y}\PY{o}{:}\PY{n+nx}{y}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}obj:\PYZsq{}}\PY{p}{,} \PY{n+nx}{obj}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kr}{const} \PY{n+nx}{o} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nx}{x}\PY{p}{,}\PY{n+nx}{y}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}o:\PYZsq{}}\PY{p}{,} \PY{n+nx}{o}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+obj: \{ x: 1, y: 2 \}
+o: \{ x: 1, y: 2 \}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{// 메소드 축약 (1)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{name}\PY{o}{:} \PY{l+s+s1}{\PYZsq{}siva6\PYZsq{}}\PY{p}{,}
+                 \PY{n+nx}{hello}\PY{o}{:} \PY{k+kd}{function}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+                     \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}Hello, \PYZsq{}}\PY{p}{,} \PY{k}{this}\PY{p}{.}\PY{n+nx}{name}\PY{p}{)}\PY{p}{;}
+                 \PY{p}{\PYZcb{}}
+             \PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{n+nx}{obj}\PY{p}{.}\PY{n+nx}{hello}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello,  siva6
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{// 메소드 축약 (2)}
+         \PY{p}{\PYZob{}}
+             \PY{k+kr}{const} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}
+                 \PY{n+nx}{name}\PY{o}{:} \PY{l+s+s1}{\PYZsq{}siva6\PYZsq{}}\PY{p}{,}
+                 \PY{n+nx}{hello}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+                     \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}Hello, \PYZsq{}}\PY{p}{,} \PY{k}{this}\PY{p}{.}\PY{n+nx}{name}\PY{p}{)}\PY{p}{;}
+                 \PY{p}{\PYZcb{}}
+             \PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{n+nx}{obj}\PY{p}{.}\PY{n+nx}{hello}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello,  siva6
+
+    \end{Verbatim}
+
+    \subsubsection{정리}\label{uxc815uxb9ac}
+
+\begin{itemize}
+\tightlist
+\item
+  간편하게 객체를 정의할 수있다.
+\item
+  모듈에서 export 할때도 property생략이 자주 사용 된다. export \{pi,
+  square, Person\}; *****
+\end{itemize}
+
+    \subsection{Promise}\label{promise}
+
+\begin{itemize}
+\tightlist
+\item
+  비동기 프로그램에서 callback hell을 해소하기 위한 방법 중 하나
+\item
+  모다드 형태의 객체를 이용 (thenable)
+\item
+  상태
+\item
+  pending : 초기상태 (fulfilled, rejected 아님)
+\item
+  fulfilled : 연산 수행 성공.
+\item
+  rejected : 연산 수행 실패.
+\item
+  settled : fulfiled or rejected 상태.
+\item
+  new Promise((resolve, reject) =\textgreater{} \{\});
+\item
+  method
+\item
+  then
+\item
+  catch
+\item
+  class method
+\item
+  all
+\item
+  race
+\item
+  reject
+\item
+  resove
+\item
+  구현 함수가 할 일
+\item
+  Promise를 반환
+\item
+  값이나 undefined를 반환
+\item
+  throw
+\item
+  es8 : async/await
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{//기본 사용법}
+        \PY{p}{\PYZob{}}
+            \PY{k+kr}{const} \PY{n+nx}{asyncFunction} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}
+                \PY{k}{return} \PY{k}{new} \PY{n+nb}{Promise}\PY{p}{(}\PY{p}{(}\PY{n+nx}{resolved}\PY{p}{,} \PY{n+nx}{rejected}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}
+                   \PY{n+nx}{setTimeout}\PY{p}{(}\PY{p}{(}\PY{p}{)}\PY{p}{=\PYZgt{}}\PY{n+nx}{resolved}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZgt{}\PYZgt{}\PYZsq{}}\PY{o}{+}\PY{n+nx}{p}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{;} 
+                \PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            \PY{k+kr}{const} \PY{n+nx}{promise} \PY{o}{=} \PY{n+nx}{asyncFunction}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}hi!\PYZsq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{promise}\PY{p}{.}\PY{n+nx}{then}\PY{p}{(}\PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{promise}\PY{p}{.}\PY{n+nx}{then}\PY{p}{(}\PY{n+nx}{asyncFunction}\PY{p}{)}\PY{p}{.}\PY{n+nx}{then}\PY{p}{(}\PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{promise}\PY{p}{.}\PY{n+nx}{then}\PY{p}{(}\PY{n+nx}{v}\PY{p}{=\PYZgt{}}\PY{n+nx}{v}\PY{p}{)}\PY{p}{.}\PY{n+nx}{then}\PY{p}{(}\PY{n+nx}{v}\PY{p}{=\PYZgt{}}\PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}**\PYZsq{}}\PY{p}{,} \PY{n+nx}{v}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{p}{\PYZob{}}
+            \PY{k+kr}{const} \PY{n+nx}{DATAS} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}test\PYZsq{}}\PY{o}{:}\PY{p}{\PYZob{}}\PY{n+nx}{name}\PY{o}{:}\PY{l+s+s1}{\PYZsq{}홍길동\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}test1\PYZsq{}}\PY{o}{:}\PY{p}{\PYZob{}}\PY{n+nx}{name}\PY{o}{:}\PY{l+s+s1}{\PYZsq{}전우치\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{;}
+            
+            \PY{k+kr}{const} \PY{n+nx}{getUser} \PY{o}{=} \PY{p}{(}\PY{n+nx}{id}\PY{p}{,} \PY{n+nx}{cb}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}
+                \PY{n+nx}{setTimeout}\PY{p}{(}\PY{p}{(}\PY{p}{)}\PY{p}{=\PYZgt{}}\PY{n+nx}{cb}\PY{p}{(}\PY{n+nx}{DATAS}\PY{p}{[}\PY{n+nx}{id}\PY{p}{]}\PY{p}{.}\PY{n+nx}{name}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{;}   
+            \PY{p}{\PYZcb{}}\PY{p}{;}
+            
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZgt{}\PYZgt{}10\PYZgt{}\PYZgt{}\PYZsq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{getUser}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}test\PYZsq{}}\PY{p}{,} \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZgt{}\PYZgt{}20\PYZgt{}\PYZgt{}\PYZsq{}}\PY{p}{)}\PY{p}{;}
+            
+            \PY{k+kr}{const} \PY{n+nx}{getPromiseUser} \PY{o}{=} \PY{n+nx}{id} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}
+                \PY{k}{return} \PY{k}{new} \PY{n+nb}{Promise}\PY{p}{(}\PY{p}{(}\PY{n+nx}{resolved}\PY{p}{,} \PY{n+nx}{rejected}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{p}{\PYZob{}}
+                   \PY{n+nx}{getUser}\PY{p}{(}\PY{n+nx}{id}\PY{p}{,} \PY{n+nx}{resolved}\PY{p}{)}\PY{p}{;} 
+                \PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            
+            \PY{k+kr}{const} \PY{n+nx}{testUser} \PY{o}{=} \PY{n+nx}{getPromiseUser}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}test1\PYZsq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZgt{}\PYZgt{}30\PYZgt{}\PYZgt{}\PYZsq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{testUser}\PY{p}{.}\PY{n+nx}{then}\PY{p}{(}\PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZgt{}\PYZgt{}40\PYZgt{}\PYZgt{}\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsubsection{정리}\label{uxc815uxb9ac}
+
+\begin{itemize}
+\tightlist
+\item
+  callback hell을 해소할 수 있다.
+\item
+  async 프로그램을 sync프로그램처러 처리할 수 있다. ******
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{p}{\PYZob{}}
+            \PY{k+kd}{let} \PY{n+nx}{obj} \PY{o}{=} \PY{p}{\PYZob{}}
+                \PY{n+nx}{id}\PY{o}{:}\PY{l+m+mi}{100}
+            \PY{p}{\PYZcb{}}
+            
+            \PY{k}{for} \PY{p}{(}\PY{k+kd}{let} \PY{n+nx}{o} \PY{k}{in} \PY{n+nx}{obj}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{o}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            
+            \PY{k+kd}{let} \PY{n+nx}{name} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}name\PYZsq{}}\PY{p}{;}
+            \PY{n+nx}{obj}\PY{p}{[}\PY{n+nx}{name}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{l+s+s1}{\PYZsq{}from name\PYZsq{}}\PY{p}{;}
+            
+            \PY{k+kd}{let} \PY{n+nx}{firstName} \PY{o}{=} \PY{n+nx}{Symbol}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{n+nx}{obj}\PY{p}{[}\PY{n+nx}{firstName}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{l+s+s1}{\PYZsq{}from symbol\PYZsq{}}\PY{p}{;}
+            
+            \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{obj}\PY{p}{[}\PY{n+nx}{name}\PY{p}{]}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n+nx}{obj}\PY{p}{[}\PY{n+nx}{firstName}\PY{p}{]}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            
+            \PY{k}{for} \PY{p}{(}\PY{k+kd}{let} \PY{n+nx}{o} \PY{k}{in} \PY{n+nx}{obj}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n+nx}{console}\PY{p}{.}\PY{n+nx}{log}\PY{p}{(}\PY{n+nx}{o}\PY{p}{)}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
